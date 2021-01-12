@@ -1,13 +1,29 @@
 package old;
 
+import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @Autonomous(name = "Diff Swerve Test Auto", group = "Linear Opmode")
 
-public class TestAuto extends LinearOpMode {
+public class TestAuto extends LinearOpMode implements StartingPosition {
     Robot robot;
     public boolean willResetIMU = true;
+
+    @Override
+    public double getStartingX() {
+        return 15;
+    }
+
+    @Override
+    public double getStartingY() {
+        return 15;
+    }
+
+    @Override
+    public Rotation2d getStartingRotation() {
+        return new Rotation2d();
+    }
 
     @Override
     public void runOpMode() throws InterruptedException {
