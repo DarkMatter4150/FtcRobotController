@@ -50,19 +50,21 @@ public class Robot {
         this.hardwareMap = hardwareMap;
 
         // Motor setting
-        arm = getMotor("arm");
-        lift = getMotor("lift");
+//        arm = getMotor("arm");
+//        lift = getMotor("lift");
         flywheel = getMotor("flywheel");
         intake = getMotor("intake");
 
         // Servo setting
-        pusher = getServo("pusher");
-        lifter = getServo("lifter");
-        claw = getServo("claw");
+//        pusher = getServo("pusher");
+//        lifter = getServo("lifter");
+//        claw = getServo("claw");
 
         // Module setting
         leftWheelModule = new WheelModule(DriveController.ModuleSide.LEFT, getMotor("topLeft"), getMotor("bottomLeft"), telemetry);
-        leftWheelModule = new WheelModule(DriveController.ModuleSide.RIGHT, getMotor("topRight"), getMotor("bottomRight"), telemetry);
+        rightWheelModule = new WheelModule(DriveController.ModuleSide.RIGHT, getMotor("topRight"), getMotor("bottomRight"), telemetry);
+        leftWheelModule.resetEncoders();
+        rightWheelModule.resetEncoders();
 
         // IMU setting
         imu = hardwareMap.get(BNO055IMU.class, "imu");

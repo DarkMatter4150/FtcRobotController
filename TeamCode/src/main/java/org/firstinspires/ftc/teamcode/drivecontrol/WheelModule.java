@@ -265,10 +265,9 @@ public class WheelModule {
         double finalPosition = (topEncoder - bottomEncoder)/2.0 * CM_PER_TICK;
         positionChange = finalPosition - startingPosition;
 
-        Vector2D displacementVec;
         double deltaYPos = Math.sin(averageAngle) * positionChange;
         double deltaXPos = Math.cos(averageAngle) * positionChange;
-        displacementVec = new Vector2D(-deltaXPos, -deltaYPos);
+        Vector2D displacementVec = new Vector2D(-deltaXPos, -deltaYPos);
 
         if (debug) {
             telemetry.addData("Position change: ", positionChange);
@@ -301,8 +300,6 @@ public class WheelModule {
                 return startAngle + (raw / 2.0);
             }
         }
-
-
     }
 
     public double getCurrentOrientation() {
@@ -340,5 +337,12 @@ public class WheelModule {
         distanceTraveled = 0;
         lastTopEncoder = topMotor.getCurrentPosition();
         lastBottomEncoder = bottomMotor.getCurrentPosition();
+    }
+
+    public void resetEncoders () {
+        topMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bottomMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        topMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bottomMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }

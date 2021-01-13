@@ -42,10 +42,10 @@ public class DriveController {
     private double moduleLeftLastDistance = 0;
     private double moduleRightLastDistance = 0;
 
-    private final T265Camera slamra = new T265Camera(new Transform2d(), 0.1, hardwareMap.appContext);;
-    private final FtcDashboard dashboard = FtcDashboard.getInstance();
-    private final TelemetryPacket packet = new TelemetryPacket();
-    private final Canvas field = packet.fieldOverlay();
+//    private final T265Camera slamra = new T265Camera(new Transform2d(), 0.1, hardwareMap.appContext);;
+//    private final FtcDashboard dashboard = FtcDashboard.getInstance();
+//    private final TelemetryPacket packet = new TelemetryPacket();
+//    private final Canvas field = packet.fieldOverlay();
 
     public boolean isRunning = true;
 
@@ -73,7 +73,7 @@ public class DriveController {
         }
     }
 
-    private void update(Vector2D translationVector, double rotationMagnitude) {
+    private void    update(Vector2D translationVector, double rotationMagnitude) {
         leftWheelModule.updateTarget(translationVector, rotationMagnitude, getHeading());
         rightWheelModule.updateTarget(translationVector, rotationMagnitude, getHeading());
     }
@@ -131,18 +131,18 @@ public class DriveController {
     }
 
     private void updateSLAM() { // TODO check functionality
-        T265Camera.CameraUpdate up = slamra.getLastReceivedCameraUpdate();
-        Translation2d translationSLAM = new Translation2d(up.pose.getTranslation().getX() / 0.0254, up.pose.getTranslation().getY() / 0.0254);
-        Rotation2d rotationSLAM = up.pose.getRotation();
-        int robotRadius = 9;
-
-        field.strokeCircle(translationSLAM.getX(), translationSLAM.getY(), robotRadius);
-        double arrowX = rotationSLAM.getCos() * robotRadius, arrowY = rotationSLAM.getSin() * robotRadius;
-        double x1 = translationSLAM.getX() + arrowX  / 2, y1 = translationSLAM.getY() + arrowY / 2;
-        double x2 = translationSLAM.getX() + arrowX, y2 = translationSLAM.getY() + arrowY;
-        field.strokeLine(x1, y1, x2, y2);
-
-        dashboard.sendTelemetryPacket(packet);
+//        T265Camera.CameraUpdate up = slamra.getLastReceivedCameraUpdate();
+//        Translation2d translationSLAM = new Translation2d(up.pose.getTranslation().getX() / 0.0254, up.pose.getTranslation().getY() / 0.0254);
+//        Rotation2d rotationSLAM = up.pose.getRotation();
+//        int robotRadius = 9;
+//
+//        field.strokeCircle(translationSLAM.getX(), translationSLAM.getY(), robotRadius);
+//        double arrowX = rotationSLAM.getCos() * robotRadius, arrowY = rotationSLAM.getSin() * robotRadius;
+//        double x1 = translationSLAM.getX() + arrowX  / 2, y1 = translationSLAM.getY() + arrowY / 2;
+//        double x2 = translationSLAM.getX() + arrowX, y2 = translationSLAM.getY() + arrowY;
+//        field.strokeLine(x1, y1, x2, y2);
+//
+//        dashboard.sendTelemetryPacket(packet);
     }
 
     private void setModuleRotationMode(WheelModule.ModuleRotationMode mode) {
